@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiva Ponnam - Python & ML Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Blue-Gray */
+            color: #E5E7EB; /* Light Gray */
+        }
+        .glass-effect {
+            background: rgba(31, 41, 55, 0.5); /* Semi-transparent Dark Gray */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #38BDF8; /* Light Blue */
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #38BDF8;
+        }
+        .active .nav-link {
+            color: #38BDF8;
+        }
+        .active .nav-link::after {
+            width: 100%;
+        }
+        .form-input {
+            background-color: #1F2937; /* Darker Gray */
+            border-color: #4B5563; /* Medium Gray */
+        }
+        .form-input:focus {
+            background-color: #374151; /* Even Darker Gray */
+            border-color: #38BDF8;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">SP.</a>
+            <div class="hidden md:flex items-center space-x-8" id="nav-menu">
+                <div class="nav-item active"><a href="#home" class="nav-link">Home</a></div>
+                <div class="nav-item"><a href="#about" class="nav-link">About</a></div>
+                <div class="nav-item"><a href="#skills" class="nav-link">Skills</a></div>
+                <div class="nav-item"><a href="#projects" class="nav-link">Projects</a></div>
+                <div class="nav-item"><a href="#contact" class="nav-link">Contact</a></div>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/90 backdrop-blur-sm">
+            <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-700">Home</a>
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/111827/111827?text=');">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">Hi, I'm Shiva Ponnam</h1>
+                    <p class="text-xl md:text-2xl text-sky-300 mb-8" id="typing-text"></p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://github.com/shiva-77-p" target="_blank" class="text-gray-300 hover:text-sky-400 transition-colors duration-300 text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/shiva-ponnam" target="_blank" class="text-gray-300 hover:text-sky-400 transition-colors duration-300 text-2xl"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <a href="#projects" class="mt-10 inline-block bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg transition-transform duration-300 transform hover:scale-105">View My Work</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/3">
+                        <!-- IMPORTANT: Replace this placeholder with your actual photo URL -->
+                        <img src="https://placehold.co/400x400/374151/E5E7EB?text=Shiva+Ponnam" alt="Shiva Ponnam" class="rounded-full shadow-2xl mx-auto border-4 border-sky-500/50">
+                    </div>
+                    <div class="md:w-2/3 text-lg text-gray-300">
+                        <p class="mb-4">As a final-year MCA student, I specialize in building intelligent systems using Python, AI/ML, and workflow automation. I am passionate about creating scalable backend services and data-driven solutions that drive efficiency and solve real-world problems.</p>
+                        <p class="mb-4">My experience includes developing a real-time traffic surveillance system that reduced manual monitoring by 80% and engineering high-performance NLP microservices. I am driven by a desire to continuously learn and apply new technologies to create impactful software.</p>
+                        <p>I am actively seeking full-time and internship roles in Python Development, Machine Learning, and Automation Engineering where I can contribute my skills and grow as a developer.</p>
+                        <!-- IMPORTANT: Upload your CV/Resume and replace '#' with the correct path -->
+                        <a href="#" download class="mt-6 inline-block bg-transparent border-2 border-sky-500 text-sky-500 hover:bg-sky-500 hover:text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">My Tech Stack</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fab fa-python text-5xl text-blue-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">Python</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-brain text-5xl text-pink-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">AI/ML</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-database text-5xl text-indigo-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">SQL</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-server text-5xl text-gray-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">FastAPI/Flask</h3>
+                    </div>
+                     <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-robot text-5xl text-teal-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">PyTorch</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-camera-retro text-5xl text-purple-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">OpenCV</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fas fa-project-diagram text-5xl text-green-400 mb-4"></i>
+                        <h3 class="font-semibold text-lg">n8n Automation</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fab fa-git-alt text-5xl text-red-500 mb-4"></i>
+                        <h3 class="font-semibold text-lg">Git</h3>
+                    </div>
+                    <div class="skill-card p-6 glass-effect rounded-lg text-center transition-all duration-300">
+                        <i class="fab fa-docker text-5xl text-blue-600 mb-4"></i>
+                        <h3 class="font-semibold text-lg">Docker</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <div class="overflow-hidden">
+                            <img src="https://placehold.co/600x400/374151/E5E7EB?text=Traffic+Surveillance" alt="Traffic Surveillance Project" class="w-full h-56 object-cover transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-white">Real-Time Traffic Surveillance</h3>
+                            <p class="text-gray-400 mb-4">An automated system using YOLOv7 and OpenCV to monitor traffic in real-time, reducing manual intervention by 80% via n8n workflow alerts.</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex space-x-2">
+                                    <span class="bg-blue-500/20 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                    <span class="bg-purple-500/20 text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">YOLOv7</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold" data-modal-target="modal-traffic">Live Demo</a>
+                                    <a href="#" class="text-gray-400 hover:text-sky-400"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                         <div class="overflow-hidden">
+                            <img src="https://placehold.co/600x400/374151/E5E7EB?text=CMATE+Project" alt="CMATE Project" class="w-full h-56 object-cover transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-white">CMATE Tabular SSL Model</h3>
+                            <p class="text-gray-400 mb-4">A PyTorch-based Self-Supervised Learning model for tabular data that improves downstream task accuracy via contrastive learning.</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex space-x-2">
+                                    <span class="bg-teal-500/20 text-teal-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">PyTorch</span>
+                                    <span class="bg-pink-500/20 text-pink-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">AI/ML</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold" data-modal-target="modal-cmate">Live Demo</a>
+                                    <a href="https://github.com/shiva-77-p/cmate-tabular-ssl" target="_blank" class="text-gray-400 hover:text-sky-400"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                         <div class="overflow-hidden">
+                            <img src="https://placehold.co/600x400/374151/E5E7EB?text=n8n+Automation" alt="n8n Workflow Automation" class="w-full h-56 object-cover transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-white">n8n Workflow Automation</h3>
+                            <p class="text-gray-400 mb-4">Designed and implemented complex automated workflows connecting various APIs and databases, significantly decreasing manual repetitive tasks.</p>
+                             <div class="flex justify-between items-center">
+                                <div class="flex space-x-2">
+                                    <span class="bg-green-500/20 text-green-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">n8n</span>
+                                    <span class="bg-gray-500/20 text-gray-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">APIs</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold" data-modal-target="modal-n8n">Live Demo</a>
+                                    <a href="#" class="text-gray-400 hover:text-sky-400"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">Get In Touch</h2>
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-center text-lg text-gray-300 mb-8">I'm currently looking for new opportunities. Feel free to send me a message about any relevant positions or just to connect!</p>
+                    <form action="#" method="POST">
+                        <div class="flex flex-col md:flex-row gap-6 mb-6">
+                            <input type="text" placeholder="Your Name" class="form-input w-full p-3 rounded-lg border-2 focus:ring-2 focus:ring-sky-500 transition-all duration-300">
+                            <input type="email" placeholder="Your Email" class="form-input w-full p-3 rounded-lg border-2 focus:ring-2 focus:ring-sky-500 transition-all duration-300">
+                        </div>
+                        <textarea placeholder="Your Message" rows="5" class="form-input w-full p-3 rounded-lg border-2 focus:ring-2 focus:ring-sky-500 transition-all duration-300 mb-6"></textarea>
+                        <div class="text-center">
+                            <button type="submit" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-10 rounded-lg transition-transform duration-300 transform hover:scale-105">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Shiva Ponnam. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Traffic Surveillance Modal -->
+    <div id="modal-traffic" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 opacity-0 pointer-events-none">
+        <div class="modal-content bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-4xl transform scale-95">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-3 mb-4">
+                <h3 class="text-2xl font-bold text-white">Live Demo: Real-Time Traffic Surveillance</h3>
+                <button class="text-gray-400 hover:text-white text-2xl" data-modal-close>&times;</button>
+            </div>
+            <div>
+                <p class="text-gray-300 mb-4">This video demonstrates the YOLOv7 model identifying and tracking vehicles in real-time from a video feed.</p>
+                <!-- IMPORTANT: Replace with a video of your project. A screen recording is perfect. -->
+                <video class="w-full rounded-lg" controls>
+                    <source src="https://placehold.co/1280x720.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- CMATE Modal -->
+    <div id="modal-cmate" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 opacity-0 pointer-events-none">
+        <div class="modal-content bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-2xl transform scale-95">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-3 mb-4">
+                <h3 class="text-2xl font-bold text-white">Live Demo: CMATE Tabular SSL Model</h3>
+                <button class="text-gray-400 hover:text-white text-2xl" data-modal-close>&times;</button>
+            </div>
+            <div>
+                <p class="text-gray-300 mb-4">This is a simplified simulation. The model takes tabular data, processes it through a contrastive-masked autoencoder, and generates embeddings. Click "Generate" to see a mock output.</p>
+                <button id="cmate-generate-btn" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 mb-4">Generate Embeddings</button>
+                <pre id="cmate-output" class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm whitespace-pre-wrap">Output will appear here...</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- n8n Modal -->
+    <div id="modal-n8n" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 opacity-0 pointer-events-none">
+        <div class="modal-content bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-4xl transform scale-95">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-3 mb-4">
+                <h3 class="text-2xl font-bold text-white">Live Demo: n8n Workflow Automation</h3>
+                <button class="text-gray-400 hover:text-white text-2xl" data-modal-close>&times;</button>
+            </div>
+            <div>
+                <p class="text-gray-300 mb-4">This animated GIF shows an example of an n8n workflow that automates data processing between an API and a database, with conditional logic for notifications.</p>
+                <!-- IMPORTANT: Replace with a GIF of your project. -->
+                <img src="https://placehold.co/1280x720/374151/E5E7EB?text=Workflow+Animation.gif" alt="n8n Workflow" class="w-full rounded-lg">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Header scroll effect ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('glass-effect');
+            } else {
+                header.classList.remove('glass-effect');
+            }
+        });
+
+        // --- Typing effect ---
+        const typingText = document.getElementById('typing-text');
+        const roles = ["Python & ML Developer", "AI/ML Enthusiast", "Automation Engineer", "Backend Developer"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            const typeSpeed = isDeleting ? 100 : 150;
+            setTimeout(type, typeSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // --- Active nav link on scroll ---
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const link = item.querySelector('a');
+                if (link.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // --- Modal Logic ---
+        const openModalButtons = document.querySelectorAll('[data-modal-target]');
+        
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modal = document.getElementById(button.dataset.modalTarget);
+                openModal(modal);
+            });
+        });
+
+        function openModal(modal) {
+            if (modal == null) return;
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.querySelector('.modal-content').classList.remove('scale-95');
+            const closeModalButtons = modal.querySelectorAll('[data-modal-close]');
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    closeModal(modal);
+                });
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        }
+
+        function closeModal(modal) {
+            if (modal == null) return;
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+            setTimeout(() => {
+                 modal.classList.add('pointer-events-none');
+            }, 250);
+        }
+
+        // --- CMATE Demo Simulation ---
+        const cmateGenerateBtn = document.getElementById('cmate-generate-btn');
+        const cmateOutput = document.getElementById('cmate-output');
+        cmateGenerateBtn.addEventListener('click', () => {
+            cmateOutput.textContent = 'Processing tabular data...\n';
+            setTimeout(() => {
+                cmateOutput.textContent += 'Applying contrastive learning & masked feature reconstruction...\n';
+            }, 1000);
+            setTimeout(() => {
+                const mockEmbedding = `[
+    [0.123, -0.456, 0.789, ..., -0.234],
+    [-0.567, 0.890, -0.123, ..., 0.678],
+    [0.901, -0.345, 0.678, ..., -0.901]
+]`;
+                cmateOutput.textContent += `Generated Embeddings (3xN vector):\n${mockEmbedding}`;
+            }, 2000);
+        });
+
+    </script>
+</body>
+</html>
